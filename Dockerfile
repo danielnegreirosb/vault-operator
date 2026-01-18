@@ -3,6 +3,7 @@ FROM golang:1.24 AS builder
 ARG TARGETOS
 ARG TARGETARCH
 
+
 WORKDIR /workspace
 # Copy the Go Modules manifests
 COPY go.mod go.mod
