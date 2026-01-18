@@ -24,7 +24,7 @@ func TestIsUserCreated(t *testing.T) {
 	assert.NoError(t, err)
 
 	op := cvault.NewUserPassOperator(client)
-	created, err := op.IsUserCreated(client, "userpass_strange", "user2", "hvs.zLqeOcu5HftaAHM4rPqU4WZW")
+	created, err := op.IsUserCreated(client, "userpass_strange", "user2", os.Getenv("VAULT_TOKEN"))
 	assert.NoError(t, err)
 	assert.True(t, created)
 }
@@ -34,6 +34,6 @@ func TestDeleteUserPass(t *testing.T) {
 	assert.NoError(t, err)
 	op := cvault.NewUserPassOperator(client)
 
-	err = op.DeleteUserPass("userpass", "user2", "hvs.zLqeOcu5HftaAHM4rPqU4WZW")
+	err = op.DeleteUserPass("userpass", "user2", os.Getenv("VAULT_TOKEN"))
 	assert.NoError(t, err)
 }
