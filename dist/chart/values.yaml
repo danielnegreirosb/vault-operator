@@ -3,7 +3,7 @@ controllerManager:
   replicas: 1
   container:
     image:
-      repository: danielnegreiros/vault-operator
+      repository: docker.io/danielnegreiros/vault-operator
       tag: latest
     imagePullPolicy: IfNotPresent
     args:
