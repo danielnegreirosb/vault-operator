@@ -3,7 +3,7 @@ controllerManager:
   replicas: 1
   container:
     image:
-      repository: harbor.demo.zebreje.uk/devops/vault-operator
+      repository: danielnegreiros/vault-operator
       tag: latest
     imagePullPolicy: IfNotPresent
     args:
