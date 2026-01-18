@@ -1,0 +1,12 @@
+apiVersion: vault.ops.community.dev/v1alpha1
+kind: AuthMethod
+metadata:
+  labels:
+    app.kubernetes.io/name: vault-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: authmethod-sample
+spec:
+  vaultOperator:
+    name: vaultserver-sample
+  type: userpass
+  path: userpass_strange

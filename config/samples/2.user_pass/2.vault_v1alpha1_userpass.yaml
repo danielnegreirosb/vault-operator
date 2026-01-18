@@ -1,0 +1,16 @@
+apiVersion: vault.ops.community.dev/v1alpha1
+kind: UserPass
+metadata:
+  labels:
+    app.kubernetes.io/name: vault-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: userpass-sample
+spec:
+  vaultOperator:
+    name: vaultserver-sample
+  name: my-user-pass
+  mountPath: userpass_strange
+  password: change_me_2
+  policies:
+    - default
+

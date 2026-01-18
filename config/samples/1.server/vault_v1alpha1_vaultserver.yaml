@@ -1,0 +1,14 @@
+apiVersion: vault.ops.community.dev/v1alpha1
+kind: VaultServer
+metadata:
+  labels:
+    app.kubernetes.io/name: vault-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: vaultserver-sample
+spec:
+  server:
+    serviceName: 10.10.100.240
+    namespace: ""
+    port: 8200
+  init: true
+  autoUnlock: true

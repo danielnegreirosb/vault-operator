@@ -1,0 +1,14 @@
+apiVersion: vault.ops.community.dev/v1alpha1
+kind: Policy
+metadata:
+  labels:
+    app.kubernetes.io/name: vault-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: policy-sample
+spec:
+  name: my-policy
+  vaultOperator:
+    name: vaultserver-sample
+  rules:
+    - path "unlocker/data/*" { capabilities = [ "read", "list" ]}
+    - path "unlocker/metadata/*" { capabilities = [ "read", "list" ]}

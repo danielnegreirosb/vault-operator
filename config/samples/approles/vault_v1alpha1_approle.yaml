@@ -1,0 +1,18 @@
+apiVersion: vault.ops.community.dev/v1alpha1
+kind: AppRole
+metadata:
+  labels:
+    app.kubernetes.io/name: vault-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: approle-sample
+spec:
+  vaultOperator:
+    name: vaultserver-sample
+  name: "my-approle"
+  mount_path: "my-approle"
+  secret_id_ttl: 3600
+  export:
+    namespace: "default"
+  policies:
+    - "default"
+

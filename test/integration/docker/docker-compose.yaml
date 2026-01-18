@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+  vault:
+    image: hashicorp/vault
+    container_name: vault-new
+    environment:
+      VAULT_ADDR: "http://localhost:8200"
+      VAULT_API_ADDR: "http://localhost:8200"
+      VAULT_ADDRESS: "http://localhost:8200"
+    ports:
+      - "8200:8200"
+      - "8201:8201"
+    restart: always
+    volumes:
+      - ./config:/vault/config:rw
+      - ./data:/vault/data:rw
+    cap_add:
+      - IPC_LOCK
+    entrypoint: vault server -config /vault/config/config.hcl

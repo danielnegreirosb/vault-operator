@@ -1,0 +1,66 @@
+{{- if .Values.rbac.enable }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    {{- include "chart.labels" . | nindent 4 }}
+  name: vault-operator-manager-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - vault.ops.community.dev
+  resources:
+  - approles
+  - authmethods
+  - policies
+  - secretengines
+  - secrets
+  - userpasses
+  - vaultservers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - vault.ops.community.dev
+  resources:
+  - approles/finalizers
+  - authmethods/finalizers
+  - policies/finalizers
+  - secretengines/finalizers
+  - secrets/finalizers
+  - userpasses/finalizers
+  - vaultservers/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - vault.ops.community.dev
+  resources:
+  - approles/status
+  - authmethods/status
+  - policies/status
+  - secretengines/status
+  - secrets/status
+  - userpasses/status
+  - vaultservers/status
+  verbs:
+  - get
+  - patch
+  - update
+{{- end -}}
