@@ -1,6 +1,0 @@
-projectKey=vault-operator
-serverUrl=https://sonarqube.zebreje.uk
-serverVersion=24.12.0.100206
-dashboardUrl=https://sonarqube.zebreje.uk/dashboard?id=vault-operator
-ceTaskId=f9cd5b4d-f275-4e3a-a023-6140632a236d
-ceTaskUrl=https://sonarqube.zebreje.uk/api/ce/task?id=f9cd5b4d-f275-4e3a-a023-6140632a236d
