@@ -27,7 +27,7 @@ func (uo *AppRoleOperator) CreateorUpdateAppRole(ctx context.Context, mountPath 
 	return nil
 }
 
-func (uo *AppRoleOperator) GenerateAppRoleSecretID(ctx context.Context, roleName string, path string, token string) (string, error) {
+func (uo *AppRoleOperator) GenerateAppRoleSecretID(ctx context.Context, path string, roleName string, token string) (string, error) {
 
 	secret, err := uo.client.WriteAppRoleWithContext(ctx, path, roleName, nil, uo.endPoint, token)
 	if err != nil {
