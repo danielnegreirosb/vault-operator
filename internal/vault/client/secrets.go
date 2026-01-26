@@ -94,7 +94,7 @@ func (so *SecretOperator) createOrUpdateKvV2Secret(ctx context.Context, secretPa
 func randomize(m map[string]string, size int) map[string]interface{} {
 	result := make(map[string]interface{})
 	for k, v := range m {
-		if v == "{{random}}" {
+		if v == "{auto}" {
 			result[k] = generateRandomString(size)
 			continue
 		}

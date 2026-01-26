@@ -60,9 +60,9 @@ func TestSecretCreation(t *testing.T) {
 
 // func TestRandomizeNested(t *testing.T) {
 // 	in := map[string]interface{}{
-// 		"a": "{{random}}",
+// 		"a": "{auto}",
 // 		"b": map[string]interface{}{
-// 			"c": "{{random}}",
+// 			"c": "{auto}",
 // 			"d": "fixed",
 // 		},
 // 	}
@@ -72,14 +72,14 @@ func TestSecretCreation(t *testing.T) {
 // 	va, ok := out["a"].(string)
 // 	require.True(t, ok)
 // 	assert.Equal(t, 8, len(va))
-// 	assert.NotEqual(t, "{{random}}", va)
+// 	assert.NotEqual(t, "{auto}", va)
 
 // 	vb, ok := out["b"].(map[string]interface{})
 // 	require.True(t, ok)
 // 	vc, ok := vb["c"].(string)
 // 	require.True(t, ok)
 // 	assert.Equal(t, 8, len(vc))
-// 	assert.NotEqual(t, "{{random}}", vc)
+// 	assert.NotEqual(t, "{auto}", vc)
 // 	assert.Equal(t, "fixed", vb["d"])
 // }
 
