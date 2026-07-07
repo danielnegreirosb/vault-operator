@@ -89,7 +89,7 @@ func (r *AppRoleReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ct
 
 	if !appRole.ObjectMeta.DeletionTimestamp.IsZero() {
 		return r.handleDeletion(ctx, appRole, appOp, vaultOpInstance.Token)
-	
+
 	}
 
 	if !controllerutil.ContainsFinalizer(appRole, appRoleFinalizer) {
@@ -130,7 +130,24 @@ func (r *AppRoleReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ct
 	}
 
 	return r.updateStatus(ctx, appRole, true,
-		"AppRole successfully synchronized", 0)
+		"AppRole successfully synchronized", computeRequeueAfter(appRole.Spec.SecretIDTTL))
+}
+
+// computeRequeueAfter takes the secret_id_ttl in seconds and returns 80% of
+// the value so the secret is refreshed before it expires.
+// Falls back to 30 minutes if the TTL is zero (never expires in Vault, but
+// we still want to periodically re-export a fresh secret_id).
+func computeRequeueAfter(secretIDTTLSeconds int) time.Duration {
+	if secretIDTTLSeconds <= 0 {
+		return 30 * time.Minute
+	}
+	ttl := time.Duration(secretIDTTLSeconds) * time.Second
+	// Refresh at 80% of the TTL to avoid expiry races
+	requeue := time.Duration(float64(ttl) * 0.8)
+	if requeue < time.Minute {
+		requeue = time.Minute
+	}
+	return requeue
 }
 
 func (r *AppRoleReconciler) handleDeletion(ctx context.Context, appRole *v1alpha1.AppRole, appOp *cvault.AppRoleOperator, token string) (ctrl.Result, error) {
